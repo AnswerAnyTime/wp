@@ -43,7 +43,7 @@ services:
       MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
       UPLOAD_LIMIT: 50M
     ports:
-      - ${IP}:8080:80
+      - ${IP}:8081:80
     links:
       - db:db
     volumes:
