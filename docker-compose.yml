@@ -3,11 +3,11 @@ services:
   # Init to mount volumes
   init:
     image: busybox
-    command: ["sh", "-c", "chown -R 1000:1000 /wp_app2 && \
-                        chmod -R 755 /wp_app2"]
+    command: ["sh", "-c", "chown -R 1000:1000 /wordpress-content && \
+                        chmod -R 755 /wordpress-content"]
     entrypoint: ["/bin/sh", "/init.sh"]
     volumes:
-      - wp_app:/wp_app2
+      - wp_app:/wordpress-content
       - ./wp_app:/wp_app
       - ./init.sh:/init.sh
     networks:
@@ -24,7 +24,6 @@ services:
       WORDPRESS_DB_PASSWORD: "${DB_PASSWORD}"
       WORDPRESS_DB_NAME: "${DB_NAME}"
     volumes:
-    #   - "../files/wp_app/custom-theme:/var/www/html/wp-content/themes/custom-theme"
       - wp_app:/var/www/html
     depends_on:
       - init

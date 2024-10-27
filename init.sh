@@ -2,7 +2,7 @@
 
 # Define source and target directories
 SOURCE_DIR="/wp_app"
-TARGET_DIR="/wp_app2"
+TARGET_DIR="/wordpress-content"
 
 # Check if the source directory exists
 if [ -d "$SOURCE_DIR" ]; then
@@ -19,9 +19,6 @@ if [ -d "$SOURCE_DIR" ]; then
     echo "Copying $SOURCE_DIR to $TARGET_DIR..."
     cp -r "$SOURCE_DIR"/* "$TARGET_DIR/"
     
-    # Remove the original files
-    # echo "Removing original files from $SOURCE_DIR..."
-    # rm -rf "$SOURCE_DIR"/*
 
     echo "Move complete. All contents from wp_app have been copied to $TARGET_DIR and original source cleared."
 else
