@@ -1,19 +1,4 @@
-version: "3.8"
 services:
-  # Init to mount volumes
-  init:
-    image: busybox
-    command: ["sh", "-c", "chown -R 1000:1000 /wordpress-content && \
-                        chmod -R 755 /wordpress-content"]
-    entrypoint: ["/bin/sh", "/init.sh"]
-    volumes:
-      - wp_app:/wordpress-content
-      - ./wp_app:/wp_app
-      - ./init.sh:/init.sh
-    networks:
-      - dokploy-network
-    restart: on-failure
-
   wordpress:
     image: wordpress:latest
     networks:
@@ -24,9 +9,10 @@ services:
       WORDPRESS_DB_PASSWORD: "${DB_PASSWORD}"
       WORDPRESS_DB_NAME: "${DB_NAME}"
     volumes:
-      - wp_app:/var/www/html
+      - wp_content:/var/www/html/wp-content
+      - ./wp_app:/wp_app
+    entrypoint: ["/bin/sh", "-c", "cp -r /wp_app/* /var/www/html/ && exec docker-entrypoint.sh apache2-foreground"]
     depends_on:
-      - init
       - db
     links:
       - db
@@ -44,5 +30,5 @@ services:
       - db_data:/var/lib/mysql
 
 volumes:
-  wp_app:
+  wp_content:
   db_data:
