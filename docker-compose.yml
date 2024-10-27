@@ -5,7 +5,7 @@ services:
     image: busybox
     command: ["/bin/sh", "/init.sh"]
     volumes:
-      - wp_app:/var/www/html
+      - wp_app:/wp_app
       - ./wp_app:/wp_app
       - ./init.sh:/init.sh
     networks:
