@@ -5,8 +5,8 @@ services:
     image: busybox
     command: ["/bin/sh", "/init.sh"]
     volumes:
-      - wp-app:/var/www/html
-      - ./wp-app:/wp-app
+      - wp_app:/var/www/html
+      - ./wp_app:/wp_app
       - ./init.sh:/init.sh
     networks:
       - dokploy-network
@@ -21,9 +21,9 @@ services:
       WORDPRESS_DB_USER: "${DB_USER}"
       WORDPRESS_DB_PASSWORD: "${DB_PASSWORD}"
       WORDPRESS_DB_NAME: "${DB_NAME}"
-    # volumes:
-    #   - "../files/wp-app/custom-theme:/var/www/html/wp-content/themes/custom-theme"
-      # - wordpress_data:/var/www/html
+    volumes:
+    #   - "../files/wp_app/custom-theme:/var/www/html/wp-content/themes/custom-theme"
+      - wp_app:/var/www/html
     depends_on:
       - init
       - db
@@ -43,6 +43,5 @@ services:
       - db_data:/var/lib/mysql
 
 volumes:
-  wordpress_data:
-  wp-app:
+  wp_app:
   db_data:
