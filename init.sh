@@ -14,8 +14,8 @@ if [ -d "$SOURCE_DIR" ]; then
     cp -r "$SOURCE_DIR"/* "$TARGET_DIR/"
     
     # Remove the original files
-    echo "Removing original files from $SOURCE_DIR..."
-    rm -rf "$SOURCE_DIR"/*
+    # echo "Removing original files from $SOURCE_DIR..."
+    # rm -rf "$SOURCE_DIR"/*
 
     echo "Move complete. All contents from wp-app have been copied to $TARGET_DIR and original source cleared."
 else
