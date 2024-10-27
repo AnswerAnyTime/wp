@@ -3,10 +3,9 @@ services:
   # Init to mount volumes
   init:
     image: busybox
-    command: ...
-    entrypoint: ["/bin/sh", "/init.sh"]
+    command: ["/bin/sh", "/init.sh"]
     volumes:
-      ...
+      - ./wp-app:/wp-app
       - ./init.sh:/init.sh
     networks:
       - dokploy-network
