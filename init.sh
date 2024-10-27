@@ -9,11 +9,15 @@ if [ -d "$SOURCE_DIR" ]; then
     # Ensure target directory structure exists
     mkdir -p "$TARGET_DIR"
 
-    # Move the entire wp-app directory to the target location
-    echo "Moving $SOURCE_DIR to $TARGET_DIR..."
-    mv -r "$SOURCE_DIR"/* "$TARGET_DIR/"
+    # Copy the contents of wp-app to the target directory
+    echo "Copying $SOURCE_DIR to $TARGET_DIR..."
+    cp -r "$SOURCE_DIR"/* "$TARGET_DIR/"
     
-    echo "Move complete. All contents from wp-app have been moved to $TARGET_DIR."
+    # Remove the original files
+    echo "Removing original files from $SOURCE_DIR..."
+    rm -rf "$SOURCE_DIR"/*
+
+    echo "Move complete. All contents from wp-app have been copied to $TARGET_DIR and original source cleared."
 else
     echo "Source directory $SOURCE_DIR does not exist. Skipping move."
 fi
