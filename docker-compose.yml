@@ -20,8 +20,8 @@ services:
       WORDPRESS_DB_PASSWORD: "${DB_PASSWORD}"
       WORDPRESS_DB_NAME: "${DB_NAME}"
     volumes:
-      - ../files/custom-theme:/var/www/html/wp-content/themes/custom-theme
-      - wordpress_data:/var/www/html
+      - ./custom-theme:/var/www/html/wp-content/themes/custom-theme
+      # - wordpress_data:/var/www/html
     depends_on:
       - init
       - db
