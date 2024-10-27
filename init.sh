@@ -5,7 +5,7 @@ SOURCE_DIR="/wp_app"
 TARGET_DIR="/wordpress-content"
 
 # Purge the target directory first
-rm -rf "$SOURCE_DIR"
+# rm -rf "$SOURCE_DIR"
 
 # Check if the source directory exists
 if [ -d "$SOURCE_DIR" ]; then
