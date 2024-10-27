@@ -1,4 +1,16 @@
 services:
+  # Init to mount volumes
+  init:
+    image: wordpress:latest
+    entrypoint: ["/bin/sh", "/init.sh"]
+    volumes:
+      - wp_app:/wordpress-content
+      - ./wp_app:/wp_app
+      - ./init.sh:/init.sh
+    networks:
+      - dokploy-network
+    restart: on-failure
+
   wordpress:
     image: wordpress:latest
     networks:
@@ -9,10 +21,9 @@ services:
       WORDPRESS_DB_PASSWORD: "${DB_PASSWORD}"
       WORDPRESS_DB_NAME: "${DB_NAME}"
     volumes:
-      - wp_content:/var/www/html/wp-content
-      - ./wp_app:/wp_app
-    entrypoint: ["/bin/sh", "-c", "cp -r /wp_app/* /var/www/html/ && exec docker-entrypoint.sh apache2-foreground"]
+      - wp_app:/var/www/html
     depends_on:
+      - init
       - db
     links:
       - db
@@ -30,5 +41,8 @@ services:
       - db_data:/var/lib/mysql
 
 volumes:
-  wp_content:
+  wp_app:
   db_data:
+
+networks:
+  dokploy-network:
