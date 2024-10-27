@@ -1,5 +1,17 @@
 version: "3.8"
 services:
+  # Init to mount volumes
+  init:
+    image: busybox
+    command: ...
+    entrypoint: ["/bin/sh", "/init.sh"]
+    volumes:
+      ...
+      - ./init.sh:/init.sh
+    networks:
+      - dokploy-network
+    restart: on-failure
+
   wordpress:
     image: wordpress:latest
     environment:
@@ -8,9 +20,10 @@ services:
       WORDPRESS_DB_PASSWORD: "${DB_PASSWORD}"
       WORDPRESS_DB_NAME: "${DB_NAME}"
     volumes:
+      - ../files/custom-theme:/var/www/html/wp-content/themes/custom-theme
       - wordpress_data:/var/www/html
-      - ./theme-name:/var/www/html/wp-content/themes/theme-name
     depends_on:
+      - init
       - db
     links:
       - db
