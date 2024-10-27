@@ -4,26 +4,19 @@
 SOURCE_DIR="/wp_app"
 TARGET_DIR="/wordpress-content"
 
-# Purge the target directory first
-# rm -rf "$SOURCE_DIR"
+# Ensure target directory structure exists
+mkdir -p "$TARGET_DIR"
 
-# Check if the source directory exists
+# Copy the standard WordPress files into the target directory
+echo "Copying standard WordPress files to $TARGET_DIR..."
+cp -r /usr/src/wordpress/* "$TARGET_DIR/"
+
+# Copy the contents of wp_app to the target directory, overwriting as necessary
 if [ -d "$SOURCE_DIR" ]; then
-    echo "Source directory $SOURCE_DIR exists."
-    ls -la "$SOURCE_DIR"
-
-    echo "Target directory $TARGET_DIR exists."
-    ls -la "$TARGET_DIR"
-
-    # Ensure target directory structure exists
-    mkdir -p "$TARGET_DIR"
-
-    # Copy the contents of wp_app to the target directory
-    echo "Copying $SOURCE_DIR to $TARGET_DIR..."
+    echo "Copying custom files from $SOURCE_DIR to $TARGET_DIR..."
     cp -r "$SOURCE_DIR"/* "$TARGET_DIR/"
-    
-
-    echo "Move complete. All contents from wp_app have been copied to $TARGET_DIR and original source cleared."
 else
-    echo "Source directory $SOURCE_DIR does not exist. Skipping move."
+    echo "No custom files to copy."
 fi
+
+echo "Initialization complete. The volume now contains the merged WordPress files."
