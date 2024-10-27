@@ -21,8 +21,8 @@ services:
       WORDPRESS_DB_USER: "${DB_USER}"
       WORDPRESS_DB_PASSWORD: "${DB_PASSWORD}"
       WORDPRESS_DB_NAME: "${DB_NAME}"
-    volumes:
-      - "../files/wp-app/custom-theme:/var/www/html/wp-content/themes/custom-theme"
+    # volumes:
+    #   - "../files/wp-app/custom-theme:/var/www/html/wp-content/themes/custom-theme"
       # - wordpress_data:/var/www/html
     depends_on:
       - init
