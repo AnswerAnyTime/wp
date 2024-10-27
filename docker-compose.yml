@@ -2,6 +2,7 @@ version: '3'
 
 services:
   wp:
+    user: root
     image: wordpress:latest # https://hub.docker.com/_/wordpress/
     ports:
       - ${PORT}:80 # change ip if required
@@ -21,6 +22,7 @@ services:
       - db
 
   wpcli:
+    user: root
     image: wordpress:cli
     volumes:
       - ./config/wp_php.ini:/usr/local/etc/php/conf.d/conf.ini
@@ -35,6 +37,7 @@ services:
       - wp
 
   pma:
+    user: root
     image: phpmyadmin:latest  # https://hub.docker.com/_/phpmyadmin
     environment:
       # https://docs.phpmyadmin.net/en/latest/setup.html#docker-environment-variables
@@ -51,6 +54,7 @@ services:
      - ./config/pma_config.php:/etc/phpmyadmin/config.user.inc.php
 
   db:
+    user: root
     image: mysql:latest # https://hub.docker.com/_/mysql/ - or mariadb https://hub.docker.com/_/mariadb
     # platform: linux/x86_64  # Uncomment if your machine is running on arm (ex: Apple Silicon processor)
     ports:
