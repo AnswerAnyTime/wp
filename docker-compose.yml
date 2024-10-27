@@ -59,12 +59,12 @@ services:
         '--character-set-server=utf8mb4',
         '--collation-server=utf8mb4_unicode_ci'
     ]
-    volumes:
-      - ./wp-data:/docker-entrypoint-initdb.d
-      - db_data:/var/lib/mysql
+    # volumes:
+    #   - ./wp-data:/docker-entrypoint-initdb.d
+    #   - db_data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: "${DB_NAME}"
       MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
 
-volumes:
-  db_data:
+# volumes:
+#   db_data:
