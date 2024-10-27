@@ -2,10 +2,13 @@
 
 # Define source and target directories
 SOURCE_DIR="/wp_app"
-TARGET_DIR="../files/wp_app"
+TARGET_DIR="/wp_app2"
 
 # Check if the source directory exists
 if [ -d "$SOURCE_DIR" ]; then
+    ls -la "$SOURCE_DIR"
+    ls -la "$TARGET_DIR"
+
     # Ensure target directory structure exists
     mkdir -p "$TARGET_DIR"
 

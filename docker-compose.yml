@@ -3,9 +3,11 @@ services:
   # Init to mount volumes
   init:
     image: busybox
-    command: ["/bin/sh", "/init.sh"]
+    command: ["sh", "-c", "chown -R 1000:1000 /wp_app2 && \
+                        chmod -R 755 /wp_app2"]
+    entrypoint: ["/bin/sh", "/init.sh"]
     volumes:
-      - wp_app:/wp_app
+      - wp_app:/wp_app2
       - ./wp_app:/wp_app
       - ./init.sh:/init.sh
     networks:
