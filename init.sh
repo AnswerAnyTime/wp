@@ -6,7 +6,10 @@ TARGET_DIR="/wp_app2"
 
 # Check if the source directory exists
 if [ -d "$SOURCE_DIR" ]; then
+    echo "Source directory $SOURCE_DIR exists."
     ls -la "$SOURCE_DIR"
+
+    echo "Target directory $TARGET_DIR exists."
     ls -la "$TARGET_DIR"
 
     # Ensure target directory structure exists
