@@ -11,7 +11,7 @@ if [ -d "$SOURCE_DIR" ]; then
 
     # Move the entire wp-app directory to the target location
     echo "Moving $SOURCE_DIR to $TARGET_DIR..."
-    mv "$SOURCE_DIR"/* "$TARGET_DIR/"
+    mv -r "$SOURCE_DIR"/* "$TARGET_DIR/"
     
     echo "Move complete. All contents from wp-app have been moved to $TARGET_DIR."
 else
