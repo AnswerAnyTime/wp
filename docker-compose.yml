@@ -25,6 +25,7 @@ services:
       PHP_MAX_EXECUTION_TIME: 300
     volumes:
       - wp_app:/var/www/html
+      - ./php.ini:/usr/local/etc/php/conf.d/custom-php.ini
     depends_on:
       - init
       - db
