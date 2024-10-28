@@ -19,4 +19,10 @@ else
     echo "No custom files to copy."
 fi
 
-echo "Initialization complete. The volume now contains the merged WordPress files."
+# Adjust ownership and permissions
+echo "Setting correct ownership and permissions..."
+chown -R www-data:www-data "$TARGET_DIR"
+find "$TARGET_DIR" -type d -exec chmod 755 {} \;
+find "$TARGET_DIR" -type f -exec chmod 644 {} \;
+
+echo "Initialization complete. The volume now contains the merged WordPress files with correct permissions."
